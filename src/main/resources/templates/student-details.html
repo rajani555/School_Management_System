@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title>The Abhikarma Kid's - Student Details</title>
+		<link rel="shortcut icon" href="/img/logo.jpg">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/plugins/feather/feather.css">
+		<link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+		<link rel="stylesheet" href="/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="/plugins/datatables/datatables.min.css">
+		<link rel="stylesheet" href="/css/style.css">
+	</head>
+	<body>
+		<div class="main-wrapper">
+			<div class="header">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="/img/logo.jpg" alt="Logo">
+                </a>
+                <a href="index.html" class="logo logo-small">
+                    <img src="/img/logo-small.png" alt="Logo" width="30" height="30">
+                </a>
+            </div>
+            <div class="menu-toggle">
+                <a href="javascript:void(0);" id="toggle_btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </div>
+
+            <div class="top-nav-search">
+                <form>
+                    <input type="text" class="form-control" placeholder="Search here">
+                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <a class="mobile_btn" id="mobile_btn">
+                <i class="fas fa-bars"></i>
+            </a>
+
+            <ul class="nav user-menu">
+                
+                <li class="nav-item dropdown has-arrow new-user-menus">
+                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="/img/profiles/avatar-01.jpg" width="31"
+                                alt="Soeng Souy">
+                            <div class="user-text">
+                                <h6 th:text="${loadUserByUsername.fullname}">Soeng Souy</h6>
+                                <p class="text-muted mb-0">Administrator</p>
+                            </div>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="/img/profiles/avatar-01.jpg" alt="User Image"
+                                    class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6 th:text="${loadUserByUsername.fullname}">Soeng Souy</h6>
+                                <p class="text-muted mb-0">Administrator</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" th:href="@{/index}">My Profile</a>
+                        <a class="dropdown-item" th:href="@{/index}">Edit Profile</a>
+                       <!-- <a class="dropdown-item" href="inbox.html">Setting</a>
+                        <a class="dropdown-item" href="inbox.html">Inbox</a>-->
+                         <span sec:authorize="isAuthenticated"><a class="dropdown-item" th:href="@{/logout}">Logout</a></span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">
+                            <span>Main Menu</span>
+                        </li>
+                        <li class="submenu active">
+                            <a href="#"><i class="feather-grid"></i> <span> Dashboard</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/index}">Admin Dashboard</a></li>
+                               <!-- <li><a th:href="@{/teacher-dashboard}">Teacher Dashboard</a></li>
+                                <li><a th:href="@{/student-dashboard}">Student Dashboard</a></li>-->
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-graduation-cap"></i> <span> Students</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/studentlist}">Student List</a></li>
+                                <li><a th:href="@{/studentlist}" class="active">Student View</a></li>
+                                <li><a th:href="@{/addStudent}">Student Add</a></li>
+                                <li><a th:href="@{/studentlist}">Student Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                              	<li><a th:href="@{/teacherlist}">Teacher List</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher View</a></li>
+                                <li><a th:href="@{/add-teacher}">Teacher Add</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-building"></i> <span> Departments</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/departmentslist}">Department List</a></li>
+                                <li><a th:href="@{/add-departments}">Department Add</a></li>
+                                <li><a th:href="@{/departmentslist}">Department Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/subjectslist}">Subject List</a></li>
+                                <li><a th:href="@{/add-subject}">Subject Add</a></li>
+                                <li><a th:href="@{/subjectslist}">Subject Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-title">
+                            <span>Management</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/fees-collections}">Fees Collection</a></li>
+                                <li><a th:href="@{/expenses}">Expenses</a></li>
+                                <li><a th:href="@{/salary}">Salary</a></li>
+                                <li><a th:href="@{/addFees}">Add Fees</a></li>
+                                <li><a th:href="@{/addExpenses}">Add Expenses</a></li>
+                                <li><a th:href="@{/addSalary}">Add Salary</a></li>
+                            </ul>
+                        </li>
+                       <li>
+                            <a th:href="@{/Holidays/HolidayDetails}"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Exam/examDetails}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                        </li>
+                       <!-- <li>
+                            <a th:href="@{/Events/addEvent}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                        </li>-->
+                        <li>
+                            <a th:href="@{/Times/TimeTableDetails}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Books/libraryDetails}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        </li>
+                        
+                        <li class="menu-title">
+                            <span>Pages</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-shield-alt"></i> <span> Authentication </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="register.html">Register</a></li>
+                                <li><a href="forgot-password.html">Forgot Password</a></li>
+                                <li><a href="error-404.html">Error Page</a></li>
+                            </ul>
+                        </li>
+                      <li>
+                            <a th:href="@{/Sports/SportDetails}"><i class="fas fa-baseball-ball"></i> <span>Sports</span></a>
+                        </li>
+                        
+                         <li>
+                            <a th:href="@{/Hostel/RoomDetails}"><i class="fas fa-hotel"></i><span>Hostel</span></a>
+                        </li>
+        
+                        <li>
+                            <a th:href="@{/Transport/TransportDetails}"><i class="fas fa-bus"></i> <span>Transport</span></a>
+                        </li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="page-sub-header">
+								<h3 class="page-title">Student Details</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="students.html">Student</a></li>
+									<li class="breadcrumb-item active">Student Details</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="about-info">
+									<h4>Profile <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h4>
+								</div>
+								<div class="student-profile-head">
+									<div class="profile-bg-img">
+										<img src="/img/profile-bg.jpg" alt="Profile">
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4">
+											<div class="profile-user-box">
+												<div class="profile-user-img">
+													<!-- <img src="/img/profile-user.jpg" alt="Profile"> -->
+													<img th:src="@{${'/studentimages/' + student.imageName}}" style="height:100px; width:150px">
+													<div class="form-group students-up-files profile-edit-icon mb-0">
+														<div class="uplod d-flex">
+															<label class="file-upload profile-upbtn mb-0">
+																<i class="feather-edit-3"></i><input type="file">
+															</label>
+														</div>
+													</div>
+												</div>
+												<div class="names-profiles">
+													<h4 th:text="${student.firstName + '    ' + student.lastName}">Bruce Willis</h4>
+													<h5>Computer Science</h5>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4 d-flex align-items-center">
+											<div class="follow-group">
+												<div class="students-follows">
+													<h5>Followers</h5>
+													<h4>2850</h4>
+												</div>
+												<div class="students-follows">
+													<h5>Followers</h5>
+													<h4>2850</h4>
+												</div>
+												<div class="students-follows">
+													<h5>Followers</h5>
+													<h4>2850</h4>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4 d-flex align-items-center">
+											<div class="follow-btn-group">
+												<button type="submit" class="btn btn-info follow-btns">Follow</button>
+												<button type="submit" class="btn btn-info message-btns">Message</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="student-personals-grp">
+									<div class="card">
+										<div class="card-body">
+											<div class="heading-detail">
+												<h4>Student Personal Details :</h4>
+											</div>
+											
+											<form th:object="${student}" method="POST">
+											<table border="1">
+													<tr>
+															<td>ADMISSION SESSION</td>
+															<td><input type="text" th:field="*{admissionSession}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>ADMISSION ID</td>
+															<td><input type="text" th:field="*{admissionId}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>FIRST NAME</td>
+															<td><input type="text" th:field="*{firstName}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>LAST NAME</td>
+															<td><input type="text" th:field="*{lastName}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>GENDER</td>
+															<td><input type="text" th:field="*{gender}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>DOB</td>
+															<td><input type="text" th:field="*{dateOfBirth}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>ROLL NUMBER</td>
+															<td><input type="text" th:field="*{rollNumber}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>BLOOD GROUP</td>
+															<td><input type="text" th:field="*{bloodGroup}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>RELIGION</td>
+															<td><input type="text" th:field="*{religion}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>EMAIL</td>
+															<td><input type="text" th:field="*{email}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>CLASS NAME</td>
+															<td><input type="text" th:field="*{className}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>SECTION</td>
+															<td><input type="text" th:field="*{section}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>STUDENT MOB NO</td>
+															<td><input type="text"th:field="*{studentMobileNumber}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>PARENT MOB NO</td>
+															<td><input type="text" th:field="*{parentMobileNumber}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>FATHER NAME</td>
+															<td><input type="text" th:field="*{fatherName}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>MOTHER NAME</td>
+															<td><input type="text" th:field="*{motherName}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>ADDRESS</td>
+															<td><input type="text" th:field="*{address}" readonly="readonly"/></td>
+													</tr>
+													<tr>
+															<td>IMAGE</td>
+															<td><img th:src="@{${'/studentimages/' + student.imageName}}" style="height:100px; width:150px"></td>
+													</tr>
+													
+											</table>
+											</form>
+											
+											<br>
+											<a th:href="@{/studentlist}"> - Back to Students List </a>
+											<br>
+											<br>
+											<a th:href="@{/index}"> - Back to Main Dashboard </a>
+											
+											
+										<!-- 	<div class="personal-activity">
+												<div class="personal-icons">
+													<i class="feather-user"></i>
+												</div>
+												<div class="views-personal">
+													<h4>Name</h4>
+													<h5>Bruce Willis</h5>
+												</div>
+											</div>
+											<div class="personal-activity">
+												<div class="personal-icons">
+													<img src="/img/icons/buliding-icon.svg" alt="">
+												</div>
+												<div class="views-personal">
+													<h4>Department </h4>
+													<h5>Computer Science</h5>
+												</div>
+											</div>
+											<div class="personal-activity">
+												<div class="personal-icons">
+													<i class="feather-phone-call"></i>
+												</div>
+												<div class="views-personal">
+													<h4>Mobile</h4>
+													<h5>+91 89657 48512</h5>
+												</div>
+											</div>
+											<div class="personal-activity">
+												<div class="personal-icons">
+													<i class="feather-mail"></i>
+												</div>
+												<div class="views-personal">
+													<h4>Email</h4>
+													<h5><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81e5e0e8f2f8c1e6ece0e8edafe2eeec">[email&#160;protected]</a></h5>
+												</div>
+											</div>
+											<div class="personal-activity">
+												<div class="personal-icons">
+													<i class="feather-user"></i>
+												</div>
+												<div class="views-personal">
+													<h4>Gender</h4>
+													<h5>Male</h5>
+												</div>
+											</div>
+											<div class="personal-activity">
+												<div class="personal-icons">
+													<i class="feather-calendar"></i>
+												</div>
+												<div class="views-personal">
+													<h4>Date of Birth</h4>
+													<h5>22 Apr 1995</h5>
+												</div>
+											</div>
+											<div class="personal-activity">
+												<div class="personal-icons">
+													<i class="feather-italic"></i>
+												</div>
+												<div class="views-personal">
+													<h4>Language</h4>
+													<h5>English, French, Bangla</h5>
+												</div>
+											</div>
+											<div class="personal-activity mb-0">
+												<div class="personal-icons">
+													<i class="feather-map-pin"></i>
+												</div>
+												<div class="views-personal">
+													<h4>Address</h4>
+													<h5>480, Estern Avenue, New York</h5>
+												</div>
+											</div> -->
+										</div>
+									</div>
+								</div>
+								<div class="student-personals-grp">
+									<div class="card mb-0">
+										<div class="card-body">
+											<div class="heading-detail">
+												<h4>Skills:</h4>
+											</div>
+											<div class="skill-blk">
+												<div class="skill-statistics">
+													<div class="skills-head">
+														<h5>Photoshop</h5>
+														<p>90%</p>
+													</div>
+													<div class="progress mb-0">
+														<div class="progress-bar bg-photoshop" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+												<div class="skill-statistics">
+													<div class="skills-head">
+														<h5>Code editor</h5>
+														<p>75%</p>
+													</div>
+													<div class="progress mb-0">
+														<div class="progress-bar bg-editor" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+												<div class="skill-statistics mb-0">
+													<div class="skills-head">
+														<h5>Illustrator</h5>
+														<p>95%</p>
+													</div>
+													<div class="progress mb-0">
+														<div class="progress-bar bg-illustrator" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div class="student-personals-grp">
+									<div class="card mb-0">
+										<div class="card-body">
+											<div class="heading-detail">
+												<h4>About Me</h4>
+											</div>
+											<div class="hello-park">
+												<h5>Hello I am Daisy Parks</h5>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur officia deserunt mollit anim id est laborum.</p>
+												<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+											</div>
+											<div class="hello-park">
+												<h5>Education</h5>
+												<div class="educate-year">
+													<h6>2008 - 2009</h6>
+													<p>Secondary Schooling at xyz school of secondary education, Mumbai.</p>
+												</div>
+												<div class="educate-year">
+													<h6>2011 - 2012</h6>
+													<p>Higher Secondary Schooling at xyz school of higher secondary education, Mumbai.</p>
+												</div>
+												<div class="educate-year">
+													<h6>2012 - 2015</h6>
+													<p>Bachelor of Science at Abc College of Art and Science, Chennai.</p>
+												</div>
+												<div class="educate-year">
+													<h6>2015 - 2017</h6>
+													<p class="mb-0">Master of Science at Cdm College of Engineering and Technology, Pune.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<p>Copyright © 2022 Dreamguys.</p>
+			</footer>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/js/jquery-3.6.0.min.js"></script>
+	<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/feather.min.js"></script>
+	<script src="/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/js/script.js"></script>
+</body>
+</html>

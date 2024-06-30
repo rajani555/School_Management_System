@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<!-- Mirrored from preschool.dreamguystech.com/template/add-room.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Sep 2023 08:00:19 GMT -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>The Abhikarma Kid's - Hostel</title>
+
+<link rel="shortcut icon" href="/img/logo.jpg">
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&amp;display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/plugins/feather/feather.css">
+
+<link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+
+<link rel="stylesheet"
+	href="/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+
+<link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<div class="main-wrapper">
+
+		<div class="header">
+
+			<div class="header-left">
+				<a href="index-2.html" class="logo"> <img
+					src="/img/logo.jpg" alt="Logo">
+				</a> <a href="index-2.html" class="logo logo-small"> <img
+					src="/img/logo.jpg" alt="Logo" width="30" height="30">
+				</a>
+			</div>
+
+			<div class="menu-toggle">
+				<a href="javascript:void(0);" id="toggle_btn"> <i
+					class="fas fa-bars"></i>
+				</a>
+			</div>
+
+			<div class="top-nav-search">
+				<form>
+					<input type="text" class="form-control" placeholder="Search here">
+					<button class="btn" type="submit">
+						<i class="fas fa-search"></i>
+					</button>
+				</form>
+			</div>
+
+
+			<a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i>
+			</a>
+
+
+			<ul class="nav user-menu">
+				<li class="nav-item dropdown has-arrow new-user-menus"><a
+					href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+						<span class="user-img"> <img class="rounded-circle"
+							src="/img/profiles/avatar-01.jpg" width="31"
+							alt="Ryan Taylor">
+							<div class="user-text">
+								<h6 th:text="${loadUserByUsername.fullname}">Ryan Taylor</h6>
+								<p class="text-muted mb-0">Administrator</p>
+							</div>
+					</span>
+				</a>
+					<div class="dropdown-menu">
+						<div class="user-header">
+							<div class="avatar avatar-sm">
+								<img src="/img/profiles/avatar-01.jpg" alt="User Image"
+									class="avatar-img rounded-circle">
+							</div>
+							<div class="user-text">
+								<h6 th:text="${loadUserByUsername.fullname}">Ryan Taylor</h6>
+								<p class="text-muted mb-0">Administrator</p>
+							</div>
+						</div>
+						<a class="dropdown-item" th:href="@{/index}">My Profile</a> <a
+							class="dropdown-item" th:href="@{/index}">Edit Profile</a> <a
+							<span sec:authorize="isAuthenticated"><a class="dropdown-item" th:href="@{/logout}">Logout</a></span> 
+					</div></li>
+
+			</ul>
+
+		</div>
+
+
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-inner slimscroll">
+				<div id="sidebar-menu" class="sidebar-menu">
+					<ul>
+						<li class="menu-title"><span>Main Menu</span></li>
+						<li class="submenu"><a href="#"><i class="feather-grid"></i>
+								<span> Dashboard</span> <span class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/index}" class="active">Admin Dashboard</a></li>
+                                <!--<li><a th:href="@{/teacher-dashboard}">Teacher Dashboard</a></li>
+                                <li><a th:href="@{/student-dashboard}">Student Dashboard</a></li>-->
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-graduation-cap"></i> <span> Students</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/studentlist}">Student List</a></li>
+                                <li><a th:href="@{/studentlist}">Student View</a></li>
+                                <li><a th:href="@{/addStudent}">Student Add</a></li>
+                                <li><a th:href="@{/studentlist}">Student Edit</a></li>
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/teacherlist}">Teacher List</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher View</a></li>
+                                <li><a th:href="@{/add-teacher}">Teacher Add</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher Edit</a></li>
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-building"></i> <span> Departments</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/departmentslist}">Department List</a></li>
+                                <li><a th:href="@{/add-departments}">Department Add</a></li>
+                                <li><a th:href="@{/departmentslist}">Department Edit</a></li>
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-book-reader"></i> <span> Subjects</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/subjectslist}">Subject List</a></li>
+                                <li><a th:href="@{/add-subject}">Subject Add</a></li>
+                                <li><a th:href="@{/subjectslist}">Subject Edit</a></li>
+							</ul></li>
+						
+						<li>
+                            <a th:href="@{/Holidays/HolidayDetails}"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Exam/examDetails}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                        </li>
+                        <!--<li>
+                            <a th:href="@{/Events/addEvent}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                        </li>-->
+                        <li>
+                            <a th:href="@{/Times/TimeTableDetails}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Books/libraryDetails}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        </li>
+						
+						<li class="submenu"><a href="#"><i
+								class="fas fa-shield-alt"></i> <span> Authentication </span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a href="login.html">Login</a></li>
+								<li><a href="register.html">Register</a></li>
+								<li><a href="forgot-password.html">Forgot Password</a></li>
+								<li><a href="error-404.html">Error Page</a></li>
+							</ul></li>
+						
+						<li>
+                            <a th:href="@{/Sports/SportDetails}"><i class="fas fa-baseball-ball"></i> <span>Sports</span></a>
+                        </li>
+                        
+                         <li>
+                            <a th:href="@{/Hostel/RoomDetails}"><i class="fas fa-hotel"></i><span>Hostel</span></a>
+                        </li>
+        
+                        <li>
+                            <a th:href="@{/Transport/TransportDetails}"><i class="fas fa-bus"></i> <span>Transport</span></a>
+                        </li>
+					
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+
+				<div class="page-header">
+					<div class="row align-items-center">
+						<div class="col">
+							<h3 class="page-title">Add Rooms</h3>
+							<ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="hostel.html">Hostel</a></li>
+								<li class="breadcrumb-item active">Add Rooms</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body">
+								<form th:action="@{/Hostel/saveRoom}" th:object="${room}" method="post">
+									<div class="row">
+										<div class="col-12">
+											<h5 class="form-title">
+												<span>Room Information</span>
+											</h5>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="form-group local-forms">
+												<label>Block <span class="login-danger">*</span></label> <input
+													type="text" th:field="*{block}" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="form-group local-forms">
+												<label>Room No <span class="login-danger">*</span></label> <input
+													type="text" th:field="*{roomNo}" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="form-group local-forms">
+												<label>Room Type <span class="login-danger">*</span></label>
+												<select class="form-control select" th:field="*{roomType}">
+													<option value="Select-Type">Select Type</option>
+													<option value="Normal">Normal</option>
+													<option value="AC">AC</option>
+													<option value="Suit">Suite</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="form-group local-forms">
+												<label>No of Beds <span class="login-danger">*</span></label>
+												<input type="text" th:field="*{noOfBeds}" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="form-group local-forms">
+												<label>Cost per Bed <span class="login-danger">*</span></label>
+												<input type="text" th:field="*{costPerBed}" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="form-group local-forms">
+												<label>Availability <span class="login-danger">*</span></label>
+												<select class="form-control select" th:field="*{availability}">
+													<option value="Select-Availability">Select Availability</option>
+													<option value="Available">Available</option>
+													<option value="Not Available">Not Available</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="student-submit">
+												<button type="submit" class="btn btn-primary">Submit</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script src="/js/jquery-3.6.0.min.js"></script>
+
+	<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<script src="/js/feather.min.js"></script>
+
+	<script src="/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<script src="/plugins/select2/js/select2.min.js"></script>
+
+	<script src="/js/script.js"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/template/add-room.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Sep 2023 08:00:19 GMT -->
+</html>

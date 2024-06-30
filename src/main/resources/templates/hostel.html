@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<!-- Mirrored from preschool.dreamguystech.com/template/hostel.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Sep 2023 07:58:22 GMT -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>The Abhikarma Kid's - Hostel</title>
+
+<link rel="shortcut icon" href="/img/logo.jpg">
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&amp;display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/plugins/feather/feather.css">
+
+<link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+
+<link rel="stylesheet"
+	href="/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+
+<link rel="stylesheet"
+	href="/plugins/datatables/datatables.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<div class="main-wrapper">
+
+		<div class="header">
+
+			<div class="header-left">
+				<a href="index-2.html" class="logo"> <img
+					src="/img/logo.jpg" alt="Logo">
+				</a> <a href="index-2.html" class="logo logo-small"> <img
+					src="/img/logo.jpg" alt="Logo" width="30" height="30">
+				</a>
+			</div>
+
+			<div class="menu-toggle">
+				<a href="javascript:void(0);" id="toggle_btn"> <i
+					class="fas fa-bars"></i>
+				</a>
+			</div>
+
+			<div class="top-nav-search">
+				<form>
+					<input type="text" class="form-control" placeholder="Search here">
+					<button class="btn" type="submit">
+						<i class="fas fa-search"></i>
+					</button>
+				</form>
+			</div>
+
+
+			<a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i>
+			</a>
+
+
+			<ul class="nav user-menu">
+				<li class="nav-item dropdown has-arrow new-user-menus"><a
+					href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+						<span class="user-img"> <img class="rounded-circle"
+							src="/img/profiles/avatar-01.jpg" width="31"
+							alt="Ryan Taylor">
+							<div class="user-text">
+								<h6 th:text="${loadUserByUsername.fullname}">Ryan Taylor</h6>
+								<p class="text-muted mb-0">Administrator</p>
+							</div>
+					</span>
+				</a>
+					<div class="dropdown-menu">
+						<div class="user-header">
+							<div class="avatar avatar-sm">
+								<img src="/img/profiles/avatar-01.jpg" alt="User Image"
+									class="avatar-img rounded-circle">
+							</div>
+							<div class="user-text">
+								<h6 th:text="${loadUserByUsername.fullname}">Ryan Taylor</h6>
+								<p class="text-muted mb-0">Administrator</p>
+							</div>
+						</div>
+						<a class="dropdown-item" th:href="@{/index}">My Profile</a> <a
+							class="dropdown-item" th:href="@{/index}">Edit Profile</a> <a
+							<span sec:authorize="isAuthenticated"><a class="dropdown-item" th:href="@{/logout}">Logout</a></span>
+					</div></li>
+
+			</ul>
+
+		</div>
+
+
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-inner slimscroll">
+				<div id="sidebar-menu" class="sidebar-menu">
+					<ul>
+						<li class="menu-title"><span>Main Menu</span></li>
+						<li class="submenu"><a href="#"><i class="feather-grid"></i>
+								<span> Dashboard</span> <span class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/index}">Admin Dashboard</a></li>
+                               <!-- <li><a th:href="@{/teacher-dashboard}">Teacher Dashboard</a></li>
+                                <li><a th:href="@{/student-dashboard}">Student Dashboard</a></li>-->
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-graduation-cap"></i> <span> Students</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/studentlist}">Student List</a></li>
+                                <li><a th:href="@{/studentlist}">Student View</a></li>
+                                <li><a th:href="@{/addStudent}">Student Add</a></li>
+                                <li><a th:href="@{/studentlist}">Student Edit</a></li>
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/teacherlist}">Teacher List</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher View</a></li>
+                                <li><a th:href="@{/add-teacher}">Teacher Add</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher Edit</a></li>
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-building"></i> <span> Departments</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/departmentslist}">Department List</a></li>
+                                <li><a th:href="@{/add-departments}">Department Add</a></li>
+                                <li><a th:href="@{/departmentslist}">Department Edit</a></li>
+							</ul></li>
+						<li class="submenu"><a href="#"><i
+								class="fas fa-book-reader"></i> <span> Subjects</span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a th:href="@{/subjectslist}">Subject List</a></li>
+                                <li><a th:href="@{/add-subject}">Subject Add</a></li>
+                                <li><a th:href="@{/subjectslist}">Subject Edit</a></li>
+							</ul></li>
+						
+						<li>
+                            <a th:href="@{/Holidays/HolidayDetails}"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Exam/examDetails}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                        </li>
+                       <!-- <li>
+                            <a th:href="@{/Events/addEvent}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                        </li>-->
+                        <li>
+                            <a th:href="@{/Times/TimeTableDetails}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Books/libraryDetails}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        </li>
+						
+						<li class="submenu"><a href="#"><i
+								class="fas fa-shield-alt"></i> <span> Authentication </span> <span
+								class="menu-arrow"></span></a>
+							<ul>
+								<li><a href="login.html">Login</a></li>
+								<li><a href="register.html">Register</a></li>
+								<li><a href="forgot-password.html">Forgot Password</a></li>
+								<li><a href="error-404.html">Error Page</a></li>
+							</ul></li>
+						
+						<li><a href="sports.html"><i class="fas fa-baseball-ball"></i>
+								<span>Sports</span></a></li>
+						 <li>
+                            <a th:href="@{/Sports/SportDetails}"><i class="fas fa-baseball-ball"></i> <span>Sports</span></a>
+                        </li>
+                        
+                         <li>
+                            <a th:href="@{/Hostel/RoomDetails}"><i class="fas fa-hotel"></i><span>Hostel</span></a>
+                        </li>
+        
+                        <li>
+                            <a th:href="@{/Transport/TransportDetails}"><i class="fas fa-bus"></i> <span>Transport</span></a>
+                        </li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+
+				<div class="page-header">
+					<div class="row align-items-center">
+						<div class="col">
+							<h3 class="page-title">Hostel</h3>
+							<ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index-2.html">Dashboard</a></li>
+								<li class="breadcrumb-item active">Hostel</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+		<div class="col-lg-4 col-md-6">
+					<div class="form-group">
+						<form th:action="@{/Hostel/RoomDetails}" class="d-flex gap-3">
+							<input type="text" name="keyword" id="keyword"
+								th:value="${keyword}" class="form-control"
+								placeholder="Search by Block, Room Type and Availability..."
+								required>
+							<div class="col-lg-2">
+								<div class="search-student-btn d-flex gap-3">
+
+									<button type="submit" class="btn btn-primary">Search</button>
+									<button type="reset" class="btn btn-primary" onclick="clearSearch()">Clear</button>
+									
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			<!-- SPRING BOOT -->
+			<th:block th:if="${session.msg}">
+			<p class= "text-center fs-5" style="color:#028A0F;">[[${session.msg}]]</p>
+			<th:block th:text="${@roomService.removeSessionMessage()}"></th:block>
+			</th:block>
+			
+			<!-- SPRING BOOT -->
+			<th:block th:if="${session.msgd}">
+			<p class= "text-center fs-5" style="color:#FF282A;">[[${session.msgd}]]</p>
+			<th:block th:text="${@roomService.removeSessionMessage2()}"></th:block>
+			</th:block>
+			
+			<!-- SPRING BOOT -->
+			<th:block th:if="${session.msgu}">
+			<p class= "text-center fs-5" style="color:#2F46FA;">[[${session.msgu}]]</p>
+			<th:block th:text="${@roomService.removeSessionMessage3()}"></th:block>
+			</th:block>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card card-table">
+							<div class="card-body">
+
+								<div class="page-header">
+									<div class="row align-items-center">
+										<div class="col">
+											<h3 class="page-title">Hostel</h3>
+										</div>
+										<div class="col-auto text-end float-end ms-auto download-grp">
+											<a href="#" class="btn btn-outline-primary me-2"><i
+												class="fas fa-download"></i> Download</a> <a
+												th:href="@{/Hostel/addRoom}" class="btn btn-primary"><i
+												class="fas fa-plus"></i></a>
+										</div>
+									</div>
+								</div>
+
+								<div class="table-responsive">
+									<table
+										class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+										<thead class="student-thread">
+											<tr>
+												<th>SN</th>
+												<th>Block</th>
+												<th>Room No</th>
+												<th>Room Type</th>
+												<th>No of Beds</th>
+												<th>Cost per Bed</th>
+												<th>Availability</th>
+												<th class="text-end">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="room, iStat: ${roomList}">
+												<td th:text="${iStat.index + 1}">A Block</td>
+												<td th:text="${room.block}">101</td>
+												<td th:text="${room.roomNo}">6</td>
+												<td th:text="${room.roomType}">Medium</td>
+												<td th:text="${room.noOfBeds}">$10</td>
+												<td th:text="${room.costPerBed}">$10</td>
+												<td th:text="${room.availability}"></td>
+												<td><span class="badge badge-danger">Full</span></td>
+												<td class="text-end">
+													<div class="actions">
+													
+														<a th:href="@{/Hostel/ViewRoomDetailsById/{id}(id=${room.id})}" class="btn btn-sm bg-success-light me-2" onclick="return confirm('Are you sure you want to see this particular record...?')">
+															<i class="feather-eye"></i></a>
+														
+														 <a th:href="@{/Hostel/UpdateRoomById/{id}(id=${room.id})}" class="btn btn-sm bg-danger-light" onclick="return confirm('Are you sure you want to edit this record...?')">
+															<i class="feather-edit"></i></a>
+															
+														 <a th:href="@{/Hostel/DeleteRoomById/{id}(id=${room.id})}" class="btn btn-sm bg-danger-light" onclick="return confirm('Are you sure you want to delete this record...?')">
+															<i class="feather-trash"></i></a>
+
+														<!-- <a th:href="@{/Hostel/PrintPdfReportByIdRoom/{id}(id=${roomt.id})}" class="btn btn-sm bg-danger-light" onclick="return confirm('Are you sure you want to download this record...?')">
+															<i class="feather-download">P</i>
+														</a>
+														
+														<a th:href="@{/Hostel/ExcelReportByIdRoom/{id}(id=${room.id})}" class="btn btn-sm bg-danger-light" onclick="return confirm('Are you sure you want to download this record...?')">
+															<i class="feather-download">E</i>
+														</a> -->
+													</div>
+												</td>
+											</tr>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer>
+				<p>Copyright © 2022 Dreamguys.</p>
+			</footer>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		function clearSearch()
+		{
+			window.location = "/Hostel/RoomDetails";
+		}
+	</script>
+
+	<script src="/js/jquery-3.6.0.min.js"></script>
+
+	<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<script src="/js/feather.min.js"></script>
+
+	<script src="/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<script src="/plugins/datatables/datatables.min.js"></script>
+
+	<script src="/js/script.js"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/template/hostel.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Sep 2023 07:58:23 GMT -->
+</html>

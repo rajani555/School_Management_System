@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>The Abhikarma Kid's Admin Dashboard</title>
+    <link rel="shortcut icon" href="img/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/feather/feather.css">
+    <link rel="stylesheet" href="plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <div class="header">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="img/logo.jpg" alt="Logo">
+                </a>
+                <a href="index.html" class="logo logo-small">
+                    <img src="img/logo.jpg" alt="Logo" width="30" height="30">
+                </a>
+            </div>
+            <div class="menu-toggle">
+                <a href="javascript:void(0);" id="toggle_btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </div>
+
+            <div class="top-nav-search">
+                <form>
+                    <input type="text" class="form-control" placeholder="Search here">
+                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <a class="mobile_btn" id="mobile_btn">
+                <i class="fas fa-bars"></i>
+            </a>
+
+            <ul class="nav user-menu">
+               <!-- <li class="nav-item dropdown noti-dropdown language-drop me-2">
+                    <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
+                        <img src="img/icons/header-icon-01.svg" alt="">
+                    </a>
+                    <div class="dropdown-menu ">
+                        <div class="noti-content">
+                            <div>
+                                <a class="dropdown-item" href="javascript:;"><i
+                                        class="flag flag-lr me-2"></i>English</a>
+                                <a class="dropdown-item" href="javascript:;"><i
+                                        class="flag flag-bl me-2"></i>Francais</a>
+                                <a class="dropdown-item" href="javascript:;"><i class="flag flag-cn me-2"></i>Turkce</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown noti-dropdown me-2">
+                    <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
+                        <img src="img/icons/header-icon-05.svg" alt="">
+                    </a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span class="notification-title">Notifications</span>
+                            <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                        </div>
+                        <div class="noti-content">
+                            <ul class="notification-list">
+                                <li class="notification-message">
+                                    <a href="#">
+                                        <div class="media d-flex">
+                                            <span class="avatar avatar-sm flex-shrink-0">
+                                                <img class="avatar-img rounded-circle" alt="User Image"
+                                                    src="img/profiles/avatar-02.jpg">
+                                            </span>
+                                            <div class="media-body flex-grow-1">
+                                                <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
+                                                    approved <span class="noti-title">your estimate</span></p>
+                                                <p class="noti-time"><span class="notification-time">4 mins ago</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="#">
+                                        <div class="media d-flex">
+                                            <span class="avatar avatar-sm flex-shrink-0">
+                                                <img class="avatar-img rounded-circle" alt="User Image"
+                                                    src="img/profiles/avatar-11.jpg">
+                                            </span>
+                                            <div class="media-body flex-grow-1">
+                                                <p class="noti-details"><span class="noti-title">International Software
+                                                        Inc</span> has sent you a invoice in the amount of <span
+                                                        class="noti-title">$218</span></p>
+                                                <p class="noti-time"><span class="notification-time">6 mins ago</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="#">
+                                        <div class="media d-flex">
+                                            <span class="avatar avatar-sm flex-shrink-0">
+                                                <img class="avatar-img rounded-circle" alt="User Image"
+                                                    src="img/profiles/avatar-17.jpg">
+                                            </span>
+                                            <div class="media-body flex-grow-1">
+                                                <p class="noti-details"><span class="noti-title">John Hendry</span> sent
+                                                    a cancellation request <span class="noti-title">Apple iPhone
+                                                        XR</span></p>
+                                                <p class="noti-time"><span class="notification-time">8 mins ago</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="#">
+                                        <div class="media d-flex">
+                                            <span class="avatar avatar-sm flex-shrink-0">
+                                                <img class="avatar-img rounded-circle" alt="User Image"
+                                                    src="img/profiles/avatar-13.jpg">
+                                            </span>
+                                            <div class="media-body flex-grow-1">
+                                                <p class="noti-details"><span class="noti-title">Mercury Software
+                                                        Inc</span> added a new product <span class="noti-title">Apple
+                                                        MacBook Pro</span></p>
+                                                <p class="noti-time"><span class="notification-time">12 mins ago</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="topnav-dropdown-footer">
+                            <a href="#">View all Notifications</a>
+                        </div>
+                    </div>
+                </li>-->
+
+                <li class="nav-item dropdown has-arrow new-user-menus">
+                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="img/profiles/avatar-01.jpg" width="31"
+                                alt="Soeng Souy">
+                            <div class="user-text">
+                            	 <!-- SPRING BOOT -->
+                                <h6 th:text="${loadUserByUsername.fullname}">Soeng Souy</h6>
+                                <p class="text-muted mb-0">Administrator</p>
+                            </div>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="img/profiles/avatar-01.jpg" alt="User Image"
+                                    class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                            	 <!-- SPRING BOOT -->
+                             	<h6 th:text="${loadUserByUsername.fullname}">Soeng Souy</h6>
+                                <p class="text-muted mb-0">Administrator</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" th:href="@{/index}">My Profile</a>
+                        <a class="dropdown-item" th:href="@{/index}">Edit Profile</a>
+                       <!-- <a class="dropdown-item" href="inbox.html">Setting</a>
+                        <a class="dropdown-item" href="inbox.html">Inbox</a>-->
+                       <span sec:authorize="isAuthenticated"><a class="dropdown-item" th:href="@{/logout}">Logout</a></span> 
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">
+                            <span>Main Menu</span>
+                        </li>
+                        <li class="submenu active">
+                            <a href="#"><i class="feather-grid"></i> <span> Dashboard</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/index}" class="active">Admin Dashboard</a></li>
+                                <!--<li><a th:href="@{/teacher-dashboard}">Teacher Dashboard</a></li>
+                                <li><a th:href="@{/student-dashboard}">Student Dashboard</a></li>-->
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-graduation-cap"></i> <span> Students</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/studentlist}">Student List</a></li>
+                                <li><a th:href="@{/studentlist}">Student View</a></li>
+                                <li><a th:href="@{/addStudent}">Student Add</a></li>
+                                <li><a th:href="@{/studentlist}">Student Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/teacherlist}">Teacher List</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher View</a></li>
+                                <li><a th:href="@{/add-teacher}">Teacher Add</a></li>
+                                <li><a th:href="@{/teacherlist}">Teacher Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-building"></i> <span> Departments</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/departmentslist}">Department List</a></li>
+                                <li><a th:href="@{/add-departments}">Department Add</a></li>
+                                <li><a th:href="@{/departmentslist}">Department Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/subjectslist}">Subject List</a></li>
+                                <li><a th:href="@{/add-subject}">Subject Add</a></li>
+                                <li><a th:href="@{/subjectslist}">Subject Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-title">
+                            <span>Management</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a th:href="@{/fees-collections}">Fees Collection</a></li>
+                                <li><a th:href="@{/expenses}">Expenses</a></li>
+                                <li><a th:href="@{/salary}">Salary</a></li>
+                                <li><a th:href="@{/addFees}">Add Fees</a></li>
+                                <li><a th:href="@{/addExpenses}">Add Expenses</a></li>
+                                <li><a th:href="@{/addSalary}">Add Salary</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a th:href="@{/Holidays/HolidayDetails}"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Exam/examDetails}"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                        </li>
+                        <!--<li>
+                            <a th:href="@{/Events/addEvent}"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                        </li>-->
+                        <li>
+                            <a th:href="@{/Times/TimeTableDetails}"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/Books/libraryDetails}"><i class="fas fa-book"></i> <span>Library</span></a>
+                        </li>
+                        
+                        <li class="menu-title">
+                            <span>Pages</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-shield-alt"></i> <span> Authentication </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="register.html">Register</a></li>
+                                <li><a href="forgot-password.html">Forgot Password</a></li>
+                                <li><a href="error-404.html">Error Page</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a th:href="@{/Sports/SportDetails}"><i class="fas fa-baseball-ball"></i> <span>Sports</span></a>
+                        </li>
+                        
+                         <li>
+                            <a th:href="@{/Hostel/RoomDetails}"><i class="fas fa-hotel"></i><span>Hostel</span></a>
+                        </li>
+        
+                        <li>
+                            <a th:href="@{/Transport/TransportDetails}"><i class="fas fa-bus"></i> <span>Transport</span></a>
+                        </li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-sub-header">
+                                <h3 class="page-title">Welcome Admin!</h3><br>
+                             	
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item active">Admin</li>
+                                </ul>
+                            </div>
+                            <!-- SPRING BOOT -->
+                            <h5 th:text="${loadUserByUsername.fullname}"></h5>
+                        </div>
+                    </div>
+                </div>
+			 <!-- SPRING BOOT -->
+			<th:block th:if="${session.msg}">
+			<p class= "text-center text-success fs-4">[[${session.msg}]]</p>
+			<th:block th:text="${@adminService.removeSessionMessage()}"></th:block>
+			</th:block>
+
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex" >
+                        <div class="card bg-comman w-100">
+                            <div class="card-body" >
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-info" >
+                                       <h6>Total No of Students</h6>
+                                         <h3 th:text="${size + '+'}">50000</h3>
+                                    </div>
+                                    <div class="db-icon">
+                                        <img src="img/icons/dash-icon-01.svg" alt="Dashboard Icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                        <div class="card bg-comman w-100">
+                            <div class="card-body">
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-info">
+                                        <h6>2022-2023</h6>
+                                        <h3 th:text="${size3}">50+</h3>
+                                    </div>
+                                    
+                                    <div class="db-info">
+                                      <h6>2023-2024</h6>
+                                      <h3 th:text="${size4}">50+</h3>
+                                    </div>
+                                    
+                                    <div class="db-info">
+                                      <h6>2024-2025</h6>
+                                      <h3 th:text="${size5}">50+</h3>
+                                    </div>
+                                    
+                                    <div class="db-icon">
+                                        <img src="img/icons/dash-icon-02.svg" alt="Dashboard Icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                        <div class="card bg-comman w-100">
+                            <div class="card-body">
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-info">
+                                        <h6>Departments</h6>
+                                        <h3 th:text="${size2 + '+'}">30+</h3>
+                                    </div>
+                                    <div class="db-icon">
+                                        <img src="img/icons/dash-icon-03.svg" alt="Dashboard Icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                        <div class="card bg-comman w-100">
+                            <div class="card-body">
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-info">
+                                        <h6>Fees Collection</h6>
+                                        <h3 th:text="${totalFeeCount}">$505</h3>
+                                    </div>
+                                    <div class="db-icon">
+                                        <img src="img/icons/dash-icon-04.svg" alt="Dashboard Icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="row" >
+                    <div class="col-md-12 col-lg-6">
+
+                        
+                <div class="container">
+                 <div class="arrow arrow-left"><i class="fas fa-chevron-circle-left"></i></div>
+                 <img src="img/icons/dash-icon-03.svg" alt="photo">
+                 <img src="img/icons/dash-icon-04.svg" alt="photo">
+                 <img src="img/icons/dash-icon-01.svg" alt="photo">
+                 <div class="arrow arrow-right"><i class="fas fa-chevron-circle-right"></i>
+                </div>
+                <div class="dots">
+                  <div class="dot">
+                    <i class="far fa-dot-circle"></i>
+                </div>
+                <div class="dot">
+                 <i class="far fa-circle"></i>
+                </div>
+                <div class="dot">
+                <i class="far fa-circle"></i>
+             </div>
+           </div>
+        </div>
+             
+
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <div >
+                                    <div >
+                                        <marquee  style="color:skyblue;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                        <marquee behavior="alternate" style="color:green;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                        <marquee behavior="alternate" style="color:gold;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                        <marquee behavior="alternate" style="color:grey;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                        <marquee behavior="alternate" style="color:cyan;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                        <marquee behavior="alternate" style="color:orange;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                        <marquee behavior="alternate" style="color:black;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                        <marquee behavior="alternate" style="color:blue;font-size:30px;font-weight:500;"> Senior Secondary School ()</marquee>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                
+                
+           <!-- SPRING BOOT -->			
+			<th:block th:if="${session.msg}">
+			<p class= "text-center fs-5" style="color:#028A0F;">[[${session.msg}]]</p>
+			<th:block th:text="${@starStudentService.removeSessionMessage()}"></th:block>
+			</th:block>
+			
+			<!-- SPRING BOOT -->
+			<th:block th:if="${session.msgd}">
+			<p class= "text-center fs-5" style="color:#FF282A;">[[${session.msgd}]]</p>
+			<th:block th:text="${@starStudentService.removeSessionMessage2()}"></th:block>
+			</th:block>
+			
+                <div class="row mt-4">
+                    <div class="col-xl-12 d-flex">
+                        <div class="card flex-fill student-space comman-shadow">
+                            <div class="card-header d-flex align-items-center">
+                                <h5 class="card-title">Star Students</h5>
+                                <ul class="chart-list-out student-ellips">
+                                   <!--  <li class="star-menus"><a href="#" ><i class="fas fa-ellipsis-v"></i></a> </li> -->
+                                    
+                                    <li><a th:href="@{/Star/addStarStudent}"><button style="background:blue;color:#fff;padding:8px 10px;border:none;font-size:12px;">ADD MORE</button></a> </li>
+       
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table
+                                        class="table star-student table-hover table-center table-borderless table-striped">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th class="text-center">SN</th>
+                                                <th class="text-center">IMAGE</th>
+                                                <th class="text-center">NAME</th>
+                                                <th class="text-center">ROLL NUMBER</th>
+                                                <th class="text-center">TOTAL MARKS</th>
+                                                <th class="text-center">PERCENTAGE</th>
+                                                <th class="text-center">YEAR</th>
+                                                <th class="text-center">ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="starstudent, iStat: ${getAllStar}">
+                                                <td class="text-center" th:text="${iStat.index + 1}">PRE2209</td>
+                                                <td class="text-center"><img th:src="@{${'/starstudentimages/' + starstudent.imageName}}" style="height:100px; width:150px"></td>
+                                                <td class="text-center" th:text="${starstudent.name}">1185</td>
+                                                <td class="text-center" th:text="${starstudent.rollNumber}">98%</td>
+                                                <td class="text-center" th:text="${starstudent.totalMarks}">2019</td>
+                                                <td class="text-center" th:text="${starstudent.percentage}">2019</td>
+                                                <td class="text-center" th:text="${starstudent.year}">2019</td>
+                                                <td class="text-center"><a th:href="@{/Star/deleteStarById/{id}(id=${starstudent.id})}" onclick="return confirm('Are you sure you want to delete this record...?')"><button style="background:red;color:#fff;padding:8px 10px;border:none;font-size:12px;">DELETE</button></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+                
+                
+                <div class="container">
+        <div class="arrow arrow-left"><i class="fas fa-chevron-circle-left"></i></div>
+        <img src="https://images.unsplash.com/photo-1518640027989-a30d5d7e498e?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=f9575732a498c98486879d7000ab1d47" alt="">
+        <img src="https://images.unsplash.com/photo-1505843378597-b96befae716e?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=9e69634f39ec7c08514fef902cfc85ac" alt="">
+        <img src="https://images.unsplash.com/photo-1471138406156-7a89e687a062?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=7820fc816715b37942a793360b785c60" alt="">
+        <div class="arrow arrow-right"><i class="fas fa-chevron-circle-right"></i>
+        </div>
+        <div class="dots">
+          <div class="dot">
+            <i class="far fa-dot-circle"></i>
+          </div>
+          <div class="dot">
+            <i class="far fa-circle"></i>
+          </div>
+          <div class="dot">
+            <i class="far fa-circle"></i>
+          </div>
+        </div>
+      </div>
+             
+                
+                
+               <!--  ===================4 CARDS START====================== -->
+        <!-- <div>
+        <div class="cont">
+        <h1 class="mb-5">Top Students List in College</h1>
+        <a th:href="@{Star/addStarStudent}">ADD</a>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="card shadow">
+                    <img src="img/profiles/avatar-04.jpg" class="card-img-top" alt="...">
+                    <table class="table table " style="margin: 10px; margin-left: -0px;margin-bottom: -0px; border-radius: 20px;">
+                        <thead>
+                          <tr>
+                            <th colspan="2" style="text-align: center; font-size: 20px;">Title</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>Name:</th>
+                            <td>Sumit</td>
+                          </tr>
+                          <tr>
+                            <td>Id:</td>
+                            <td>123456</td>
+                          </tr>
+                          <tr>
+                            <td>Total Marks:</td>
+                            <td>423</td>
+                          </tr>
+                          <tr>
+                            <td>Percentage:</td>
+                            <td>70%</td>
+                          </tr>
+                          <tr>
+                            <td>Year:</td>
+                            <td>2023</td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    
+                </div>
+            </div>
+    
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="card shadow">
+                    <img src="img/profiles/avatar-04.jpg" class="card-img-top" alt="...">
+                    <table class="table table " style="margin: 10px; margin-left: -0px;margin-bottom: -0px; border-radius: 20px;">
+                        <thead>
+                          <tr>
+                            <th colspan="2" style="text-align: center; font-size: 20px;">Title</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Name:</td>
+                            <td>Sumit</td>
+                          </tr>
+                          <tr>
+                            <td>Id:</td>
+                            <td>123456</td>
+                          </tr>
+                          <tr>
+                            <td>Total Marks:</td>
+                            <td>423</td>
+                          </tr>
+                          <tr>
+                            <td>Percentage:</td>
+                            <td>70%</td>
+                          </tr>
+                          <tr>
+                            <td>Year:</td>
+                            <td>2023</td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    
+                </div>
+            </div>
+    
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="card shadow">
+                    <img src="img/profiles/avatar-04.jpg" class="card-img-top" alt="...">
+                    <table class="table table " style="margin: 10px; margin-left: -0px;margin-bottom: -0px; border-radius: 20px;">
+                        <thead>
+                          <tr>
+                            <th colspan="2" style="text-align: center; font-size: 20px;">Title</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Name:</td>
+                            <td>Sumit</td>
+                          </tr>
+                          <tr>
+                            <td>Id:</td>
+                            <td>123456</td>
+                          </tr>
+                          <tr>
+                            <td>Total Marks:</td>
+                            <td>423</td>
+                          </tr>
+                          <tr>
+                            <td>Percentage:</td>
+                            <td>70%</td>
+                          </tr>
+                          <tr>
+                            <td>Year:</td>
+                            <td>2023</td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="card1 shadow">
+                    <img src="img/profiles/avatar-04.jpg" class="card-img-top" alt="...">
+                    <table class="table table " style="margin: 10px; margin-left: -0px;margin-bottom: -0px; border-radius: 20px;">
+                        <thead>
+                          <tr>
+                            <th colspan="2" style="text-align: center; font-size: 20px;">Title</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Name:</td>
+                            <td>Sumit</td>
+                          </tr>
+                          <tr>
+                            <td>Id:</td>
+                            <td>123456</td>
+                          </tr>
+                          <tr>
+                            <td>Total Marks:</td>
+                            <td>423</td>
+                          </tr>
+                          <tr>
+                            <td>Percentage:</td>
+                            <td>70%</td>
+                          </tr>
+                          <tr>
+                            <td>Year:</td>
+                            <td>2023</td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+    </div> -->
+                <!--  ===================4 CARDS END====================== -->
+               
+
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card flex-fill fb sm-box">
+                            <div class="social-likes">
+                                <p>Like us on facebook</p>
+                                <h6>50,095</h6>
+                            </div>
+                            <div class="social-boxs">
+                                <img src="img/icons/social-icon-01.svg" alt="Social Icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card flex-fill twitter sm-box">
+                            <div class="social-likes">
+                                <p>Follow us on twitter</p>
+                                <h6>48,596</h6>
+                            </div>
+                            <div class="social-boxs">
+                                <img src="img/icons/social-icon-02.svg" alt="Social Icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card flex-fill insta sm-box">
+                            <div class="social-likes">
+                                <p>Follow us on instagram</p>
+                                <h6>52,085</h6>
+                            </div>
+                            <div class="social-boxs">
+                                <img src="img/icons/social-icon-03.svg" alt="Social Icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card flex-fill linkedin sm-box">
+                            <div class="social-likes">
+                                <p>Follow us on linkedin</p>
+                                <h6>69,050</h6>
+                            </div>
+                            <div class="social-boxs">
+                                <img src="img/icons/social-icon-04.svg" alt="Social Icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>Copyright © 2022 Dreamguys.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/feather.min.js"></script>
+    <script src="plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="plugins/apexchart/apexcharts.min.js"></script>
+    <script src="plugins/apexchart/chart-data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
